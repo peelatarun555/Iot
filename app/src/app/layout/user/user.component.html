@@ -1,0 +1,14 @@
+<button mat-mini-fab color="primary" [matMenuTriggerFor]="userMenu">
+    <mat-icon>person</mat-icon>
+</button>
+
+<mat-menu #userMenu="matMenu" xPosition="before">
+    <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>{{ 'sign_out' | translate }}</span>
+    </button>
+    <button mat-menu-item routerLink="settings" routerLinkActive="active-link">
+        <mat-icon>settings</mat-icon>
+        <span>{{ 'settings' | translate }}</span>
+    </button>
+</mat-menu>

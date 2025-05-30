@@ -1,0 +1,26 @@
+@if (compactLayout()) {
+    <button mat-icon-button [matMenuTriggerFor]="languageMenu">
+        <mat-icon [svgIcon]="currentLang().icon"></mat-icon>
+    </button>
+
+    <!-- Language Menu -->
+    <mat-menu #languageMenu="matMenu" xPosition="before">
+        @for (language of availableLangs(); track language.value) {
+            <button mat-menu-item (click)="switchLanguage(language)">
+                <mat-icon [svgIcon]="language.icon"></mat-icon>
+                <span>{{ language.label | translate }}</span>
+            </button>
+        }
+    </mat-menu>
+} @else {
+    <mat-form-field>
+        <mat-label>App language</mat-label>
+        <mat-select [formControl]="currentLangForm">
+            @for (language of availableLangs(); track language.value) {
+                <mat-option [value]="language.value">{{
+                    language.label | translate
+                }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+}

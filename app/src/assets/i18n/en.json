@@ -1,0 +1,121 @@
+{
+  "authentication": {
+    "login": "Log-In",
+    "password": "Password",
+    "loading": "Authentication"
+  },
+  "sign_out": "Sign Out",
+  "settings": "Settings",
+  "general": "General",
+  "account": "Account",
+  "scheme": "Scheme",
+  "light": "Light scheme",
+  "dark": "Dark scheme",
+  "english": "English",
+  "german": "German",
+  "add": "Add",
+  "create": "Create",
+  "save": "Save",
+  "delete": "Delete",
+  "cancel": "Cancel",
+  "messageDialog": {
+    "delete": "Delete",
+    "deleteMsg": "Are you sure you want to delete this item?"
+  },
+  "library": {
+    "occupancyTitle": "Free Seats",
+    "occupancyFree": "Free",
+    "occupancyInBetween": "Potentially Occupied",
+    "occupancyOccupied": "Occupied",
+    "groundFloor": "Ground Floor",
+    "upperFloor": "Upper Floor",
+    "groundFloorShort": "Ground",
+    "upperFloorShort": "Upper",
+    "groupRooms": "Group Rooms"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "administration": "Administration",
+    "graphs": "Charts",
+    "map": "Map"
+  },
+  "admin": {
+    "loadingMsg": "Data is loaded",
+    "places": "Places",
+    "devices": "Devices",
+    "sensors": "Sensors",
+    "unknown": "Unknown",
+    "table": {
+      "parent": "Parent",
+      "eui": "Device EUI",
+      "desc": "Description",
+      "deviceType": "Device Type",
+      "place": "Place",
+      "sensorType": "Sensor Type",
+      "libraryId": "Library ID",
+      "device": "Device",
+      "noData": "No data available",
+      "notAvailable": "N/A"
+    },
+    "manage": {
+      "createTitle": "Add Item",
+      "updateTitle": "Edit Item",
+      "nameReq": "Name must be specified",
+      "nameMinLength": "Name must be at least 3 characters long",
+      "parentPlace": "Parent Place",
+      "deviceType": "Device Type",
+      "eui": "Device EUI",
+      "desc": "Description",
+      "statusReq": "Status must be selected",
+      "none": "Not selected",
+      "place": "Place",
+      "placeReq": "Place must be selected",
+      "sensorType": "Sensor Type",
+      "libraryId": "Library ID",
+      "device": "Device",
+      "deviceReq": "Device must be selected",
+      "noPlaceFound": "No Place found"
+    }
+  },
+  "menu": {
+    "dashboard": "Dashboard",
+    "buildings": "Buildings",
+    "places": "Places",
+    "add_place": "Add Place",
+    "devices": "Devices",
+    "list": "List",
+    "add_device": "Add Device",
+    "sensors": "Sensors",
+    "add_sensor": "Add Sensor",
+    "manage_devices": "Manage Devices",
+    "manage_places": "Manage Places"
+  },
+  "go_back_home": "Back Home",
+  "success": "Success",
+  "submit": "Submit",
+  "reset": "Reset",
+  "status": "Status",
+  "errors": {
+    "unauthorized_access": "Sorry, you are not authorized to access this page or content.",
+    "page_not_found": "Sorry, the page you visited does not exist.",
+    "general_error": "An error occured",
+    "server_error": "Sorry, there is an error on server."
+  },
+  "forms": {
+    "sensor": {
+      "success": "Sensor created successfully.",
+      "name": "Name",
+      "type": "Type",
+      "alias": "Alias",
+      "device": "Device",
+      "name_placeholder": "Enter Name",
+      "type_placeholder": "Enter sensor type",
+      "alias_placeholder": "Enter alias name",
+      "device_placeholder": "Select device"
+    }
+  },
+  "autocomplete": {
+    "notFoundMsg": "No entry found",
+    "requiredMsg": "Selection is required"
+  }
+}

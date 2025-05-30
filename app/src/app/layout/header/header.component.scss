@@ -1,0 +1,48 @@
+@use '@angular/material' as mat;
+@use './../../../styles/breakpoints.scss' as *;
+
+.header-wrapper {
+    @include mat.elevation(1);
+    padding-block: 10px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+
+    > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        justify-content: space-between;
+
+        &:first-child {
+            gap: 16px;
+        }
+    }
+
+    .toggle-button {
+        --mdc-fab-small-container-elevation-shadow: none;
+        --mdc-fab-small-container-color: transparent;
+        --mat-fab-small-foreground-color: var(--mat-app-text-color);
+    }
+
+    .logo {
+        min-width: 0;
+    }
+
+    @include breakpoint-range($to: mobile) {
+        dui-languages,
+        dui-schemes {
+            display: none;
+        }
+    }
+
+    @include breakpoint-range($from: mobile) {
+        .toggle-button {
+            display: none;
+        }
+    }
+}

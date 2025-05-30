@@ -1,0 +1,120 @@
+{
+  "authentication": {
+    "login": "Anmelden",
+    "password": "Passwort",
+    "loading": "Anmeldung"
+  },
+  "sign_out": "Abmelden",
+  "settings": "Einstellungen",
+  "general": "Allgemein",
+  "account": "Account",
+  "scheme": "Stil",
+  "light": "Licht Schema",
+  "dark": "Dunkles Schema",
+  "english": "Englisch",
+  "german": "Deutsch",
+  "add": "Hinzufügen",
+  "create": "Erstellen",
+  "save": "Speichern",
+  "delete": "Löschen",
+  "cancel": "Abbrechen",
+  "messageDialog": {
+    "delete": "Lösche",
+    "deleteMsg": "Möchtes du diesen Eintrag wirklich löschen?"
+  },
+  "library": {
+    "occupancyTitle": "Freie Plätze",
+    "occupancyFree": "Frei",
+    "occupancyInBetween": "Eventuell besetzt",
+    "occupancyOccupied": "Besetzt",
+    "groundFloor": "Erdgeschoss",
+    "upperFloor": "Obere Etage",
+    "groundFloorShort": "Unten",
+    "upperFloorShort": "Oben",
+    "groupRooms": "Gruppenräume"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "administration": "Verwaltung",
+    "graphs": "Diagramme",
+    "map": "Karte"
+  },
+  "admin": {
+    "loadingMsg": "Daten werden geladen",
+    "places": "Orte",
+    "devices": "Geräte",
+    "sensors": "Sensoren",
+    "unknown": "Unbekannt",
+    "table": {
+      "parent": "Übergeordnet",
+      "eui": "Geräte EUI",
+      "desc": "Beschreibung",
+      "deviceType": "Gerätetyp",
+      "place": "Ort",
+      "sensorType": "Sensortyp",
+      "libraryId": "Bibliotheks ID",
+      "device": "Gerät",
+      "noData": "Keine Daten verfügbar",
+      "notAvailable": "n.v."
+    },
+    "manage": {
+      "createTitle": "Eintrag hinzufügen",
+      "updateTitle": "Eintrag bearbeiten",
+      "nameReq": "Name ist erforderlich",
+      "nameMinLength": "Name muss min. 3 Zeichen enthalten",
+      "parentPlace": "Übergeordneter Ort",
+      "deviceType": "Gerätetyp",
+      "eui": "Geräte EUI",
+      "desc": "Beschreibung",
+      "statusReq": "Status ist erforderlich",
+      "none": "Nicht ausgewählt",
+      "place": "Ort",
+      "placeReq": "Ort ist erforderlich",
+      "sensorType": "Sensortyp",
+      "libraryId": "Bibliotheks ID",
+      "device": "Gerät",
+      "deviceReq": "Gerät ist erforderlich"
+    }
+  },
+  "menu": {
+    "dashboard": "Dashboard",
+    "buildings": "Gebäude",
+    "places": "Orte",
+    "add_place": "Ort hinzufügen",
+    "devices": "Geräte",
+    "list": "Liste",
+    "add_device": "Gerät hinzufügen",
+    "sensors": "Sensoren",
+    "add_sensor": "Sensor hinzufügen",
+    "manage_devices": "Geräte verwalten",
+    "manage_places": "Orte verwalten"
+  },
+  "go_back_home": "Zurück nach Hause",
+  "success": "Erfolg",
+  "submit": "Abschicken",
+  "reset": "Zurücksetzen",
+  "status": "Status",
+  "errors": {
+    "unauthorized_access": "Sie sind leider nicht berechtigt, auf diese Seite oder diesen Inhalt zuzugreifen.",
+    "page_not_found": "Die von Ihnen besuchte Seite existiert leider nicht.",
+    "general_error": "Es ist ein Fehler aufgetreten",
+    "server_error": "Entschuldigung, auf dem Server ist ein Fehler aufgetreten."
+  },
+  "forms": {
+    "sensor": {
+      "success": "Sensor erfolgreich erstellt.",
+      "name": "Name",
+      "type": "Typ",
+      "alias": "Alias",
+      "device": "Gerät",
+      "name_placeholder": "Name eingeben",
+      "type_placeholder": "Sensortyp eingeben",
+      "alias_placeholder": "Alias-Namen eingeben",
+      "device_placeholder": "Gerät auswählen"
+    }
+  },
+  "autocomplete": {
+    "notFoundMsg": "Kein Eintrag gefunden",
+    "requiredMsg": "Auswahl ist erforderlich"
+  }
+}

@@ -1,0 +1,31 @@
+<div class="library-wrapper">
+    @if (!viewOnly) {
+        <nav [tabPanel]="tabPanel" mat-tab-nav-bar>
+            <a
+                (click)="activeLink = 'ground-floor'"
+                [active]="activeLink == 'ground-floor'"
+                mat-tab-link
+                routerLink="ground-floor"
+            >
+                {{ 'library.groundFloor' | translate }} </a
+            ><a
+                (click)="activeLink = 'upper-floor'"
+                [active]="activeLink == 'upper-floor'"
+                mat-tab-link
+                routerLink="upper-floor"
+            >
+                {{ 'library.upperFloor' | translate }}
+            </a>
+        </nav>
+    }
+    @if (errorMessage()) {
+        <div class="error-banner">
+            <span>{{ errorMessage() }}</span>
+        </div>
+    }
+    <div class="library-map">
+        <mat-tab-nav-panel #tabPanel>
+            <router-outlet></router-outlet>
+        </mat-tab-nav-panel>
+    </div>
+</div>

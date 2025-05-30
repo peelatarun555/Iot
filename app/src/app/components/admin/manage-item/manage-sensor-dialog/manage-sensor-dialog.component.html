@@ -1,0 +1,62 @@
+<div class="dui-dialog item-management-dialog">
+    <div class="dui-dialog-title">
+        <span class="dui-dialog-title-text">
+            @if (newItem) {
+                {{ 'admin.manage.createTitle' | translate }}
+            } @else {
+                {{ 'admin.manage.updateTitle' | translate }}
+            }
+        </span>
+    </div>
+    <mat-dialog-content>
+        <form [formGroup]="formGroup" class="form-flex">
+            <mat-form-field class="form-field-full-width">
+                <mat-label>Name</mat-label>
+                <input formControlName="name" matInput />
+                @if (formGroup.get('name')?.hasError('required')) {
+                    <mat-error
+                        >{{ 'admin.manage.nameReq' | translate }}
+                    </mat-error>
+                } @else {
+                    <mat-error
+                        >{{ 'admin.manage.nameMinLength' | translate }}
+                    </mat-error>
+                }
+            </mat-form-field>
+            <dui-autocomplete
+                [loadFn]="loadSensorTypesFn"
+                [preload]="true"
+                [restricted]="true"
+                formControlName="type"
+                label="admin.manage.sensorType"
+            ></dui-autocomplete>
+            <mat-form-field class="form-field-full-width">
+                <mat-label>Alias</mat-label>
+                <input formControlName="alias" matInput />
+            </mat-form-field>
+            <dui-autocomplete
+                [preload]="false"
+                [restricted]="true"
+                [searchFn]="searchDevicesFn"
+                formControlName="device"
+                label="admin.manage.device"
+            ></dui-autocomplete>
+            <mat-form-field class="form-field-full-width">
+                <mat-label>{{
+                    'admin.manage.libraryId' | translate
+                }}</mat-label>
+                <input formControlName="libraryId" matInput />
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>{{ 'cancel' | translate }}</button>
+        <button (click)="submit()" mat-button>
+            @if (newItem) {
+                {{ 'create' | translate }}
+            } @else {
+                {{ 'save' | translate }}
+            }
+        </button>
+    </mat-dialog-actions>
+</div>

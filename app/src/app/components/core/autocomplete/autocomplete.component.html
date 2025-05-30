@@ -1,0 +1,33 @@
+<mat-form-field class="dui-autocomplete-wrapper">
+    <mat-label>{{ label | translate }}</mat-label>
+    <input
+        (blur)="selectItem()"
+        (focus)="filterItems()"
+        (input)="filterItems()"
+        [formControl]="searchCtrl"
+        [matAutocomplete]="auto"
+        matInput
+        type="text"
+    />
+    <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="selectItem($event)"
+        [displayWith]="displayFn"
+        autoActiveFirstOption
+    >
+        @if (!isLoading && !hasItems()) {
+            <mat-option>{{ notFoundMsg | translate }}</mat-option>
+        }
+        @for (item of filteredItems(); track item) {
+            <mat-option [value]="item">{{ item.text }}</mat-option>
+        }
+    </mat-autocomplete>
+    @if (isLoading) {
+        <mat-spinner
+            [diameter]="20"
+            class="loading-indication"
+            matSuffix
+        ></mat-spinner>
+    }
+    <mat-error>{{ requiredMsg | translate }}</mat-error>
+</mat-form-field>

@@ -1,0 +1,14 @@
+services:
+  web-app:
+    build:
+      context: ./app
+      args:
+        - API_URL=${API_URL}
+      dockerfile: docker/Dockerfile.dev
+    container_name: web-app
+    env_file:
+      - .env
+    ports:
+      - "${WEBAPP_PORT}:${WEBAPP_PORT}"
+    volumes:
+      - "./app/src:/app/src"

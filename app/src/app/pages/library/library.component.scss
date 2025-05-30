@@ -1,0 +1,21 @@
+.library-wrapper {
+  height: 100%;
+  overflow-y: hidden !important;
+  display: flex;
+  flex-flow: column nowrap;
+
+  .error-banner {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    font-size: small;
+    padding: 4px;
+    color: var(--primary-0);
+    background-color: var(--error-80);
+  }
+
+  .library-map {
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+}

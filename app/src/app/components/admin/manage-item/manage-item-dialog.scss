@@ -1,0 +1,14 @@
+.item-management-dialog {
+    width: 500px;
+
+    .form-flex {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+    }
+
+    .loading-indication {
+        margin: 0 6px 0 12px;
+    }
+}

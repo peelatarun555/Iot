@@ -1,0 +1,28 @@
+.custom-snack-bar {
+  &.mat-mdc-snack-bar-container {
+    margin: 12px !important;
+  }
+
+  .mdc-snackbar__label {
+    font-weight: 600 !important;
+    color: white !important;
+  }
+}
+
+.snack-bar-info {
+  .mdc-snackbar__surface {
+    background-color: #64c509 !important;
+  }
+}
+
+.snack-bar-warning {
+  .mdc-snackbar__surface {
+    background-color: #e1b503 !important;
+  }
+}
+
+.snack-bar-error {
+  .mdc-snackbar__surface {
+    background-color: #e10303 !important;
+  }
+}

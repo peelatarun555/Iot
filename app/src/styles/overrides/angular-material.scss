@@ -1,0 +1,60 @@
+@use '@angular/material' as mat;
+
+/* ------------------------------------- */
+/*  @ Forms
+/* ------------------------------------- */
+.mat-mdc-form-field-focus-overlay {
+    --mat-form-field-state-layer-color: initial;
+}
+
+// make form field rounded from all corners
+.mdc-text-field--filled {
+    border-radius: var(--mdc-filled-text-field-container-shape) !important;
+}
+
+// remove form field underline
+.mdc-line-ripple {
+    display: none;
+}
+
+// to display label
+.mat-mdc-form-field:has(mat-label) {
+    margin-top: 24px;
+}
+.mat-mdc-text-field-wrapper {
+    overflow: initial !important;
+}
+.mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
+    top: -12px !important;
+    left: -14px !important;
+}
+.mdc-text-field--filled .mdc-floating-label--float-above {
+    transform: translateY(-50%) scale(1) !important
+    ;
+}
+.mdc-text-field--filled .mat-mdc-floating-label {
+    --mat-form-field-filled-label-display: block !important;
+}
+
+// select dropdown arrow
+.mat-mdc-select-arrow-wrapper {
+    --mat-select-arrow-transform: rotate(-45deg);
+    margin-top: -2px;
+}
+.mat-mdc-select-arrow {
+    height: 8px !important;
+    width: 8px !important;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
+}
+.mat-mdc-select-arrow svg {
+    display: none;
+}
+
+/* ------------------------------------- */
+/*  @ Radio Buttons
+/* ------------------------------------- */
+.mat-mdc-radio-group {
+    display: flex;
+    gap: 8px;
+}

@@ -1,0 +1,12 @@
+<div class="custom-snack-bar">
+    @if (data.icon !== '') {
+        <mat-icon>
+            {{ data.icon }}
+        </mat-icon>
+    }
+    <div>
+        @for (message of messages; track message) {
+            <p>{{ message }}</p>
+        }
+    </div>
+</div>

@@ -1,0 +1,39 @@
+# Build stage
+FROM node:22-alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package and config files
+COPY package*.json ./
+COPY tsconfig*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Install gettext for envsubst
+RUN apk add --no-cache gettext
+
+# Copy ESLint and Prettier config
+COPY .eslintrc .eslintrc
+COPY .prettierrc .prettierrc
+
+# Copy application source code
+COPY ./src ./src
+COPY ./angular.json ./angular.json
+
+# Copy the runtime environment setup script
+COPY ./src/environments/set-dev-runtime-env.sh /utils/set-dev-runtime-env.sh
+
+# Ensure the script uses Unix line endings and is executable
+RUN sed -i 's/\r$//' /utils/set-dev-runtime-env.sh && \
+    chmod +x /utils/set-dev-runtime-env.sh
+
+# (Optional) Debug: Show contents of /utils and the script
+RUN echo "== DEBUG: /utils contents ==" && \
+    ls -l /utils && \
+    echo "== DEBUG: Script content ==" && \
+    cat /utils/set-dev-runtime-env.sh
+
+# Set the entrypoint to run the script
+ENTRYPOINT ["/utils/set-dev-runtime-env.sh"]

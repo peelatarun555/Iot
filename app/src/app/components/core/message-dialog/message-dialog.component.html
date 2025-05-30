@@ -1,0 +1,15 @@
+<div class="dui-dialog">
+    <div class="dui-dialog-title">
+        <mat-icon class="dui-dialog-title-icon">error</mat-icon>
+        <span class="dui-dialog-title-text">{{ data.title }}</span>
+    </div>
+    <mat-dialog-content>
+        <span>{{ data.message }}</span>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>{{ 'cancel' | translate }}</button>
+        <button [mat-dialog-close]="true" cdkFocusInitial mat-button>
+            {{ data.buttonLabel }}
+        </button>
+    </mat-dialog-actions>
+</div>
