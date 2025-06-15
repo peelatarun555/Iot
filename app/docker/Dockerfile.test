@@ -1,0 +1,24 @@
+# Use the Cypress image for testing
+FROM cypress/included:13.12.0
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json .
+COPY tsconfig*.json .
+
+# Install Python, Make, and G++ for building dependencies
+# Then clear the cache to keep the image size down
+#RUN apk add --update python3 make g++ && rm -rf /var/cache/apk/*
+
+# Install npm packages
+RUN npm ci --legacy-peer-deps 
+
+# Copy the source code
+COPY ./src ./src
+COPY ./angular.json .
+COPY ./cypress* .
+
+# Run the Cypress tests
+CMD ["npx", "cypress", "run", "e2e"]

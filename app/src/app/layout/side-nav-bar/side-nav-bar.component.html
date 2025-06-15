@@ -1,0 +1,32 @@
+<div class="side-nav-wrapper">
+    <img class="logo" src="assets/img/logo_small.svg" />
+
+    <div class="routes">
+        <div>
+            @for (item of sideNavItems; track item) {
+                <button
+                    class="nav-item-btn"
+                    mat-fab
+                    extended
+                    routerLink="{{ item.link }}"
+                    routerLinkActive="active"
+                >
+                    <mat-icon>{{ item.icon }}</mat-icon>
+                    <span>{{ item.label | translate }}</span>
+                </button>
+            }
+        </div>
+        @if (isAdmin()) {
+            <button
+                class="nav-item-btn"
+                mat-fab
+                extended
+                routerLink="administration"
+                routerLinkActive="active"
+            >
+                <mat-icon>settings</mat-icon>
+                <span>{{ 'navigation.administration' | translate }}</span>
+            </button>
+        }
+    </div>
+</div>

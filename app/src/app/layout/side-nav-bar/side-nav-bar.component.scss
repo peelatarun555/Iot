@@ -1,0 +1,69 @@
+@use '@angular/material' as mat;
+
+.side-nav-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 10px;
+  gap: 24px;
+  container-type: inline-size;
+
+  .logo {
+    width: 70px;
+    max-width: 70px;
+  }
+
+  .routes {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .nav-item-btn {
+      --mdc-extended-fab-container-elevation-shadow: none;
+      --mdc-extended-fab-label-text-size: 0.7rem;
+      --mdc-extended-fab-label-text-weight: 600;
+      --mdc-extended-fab-container-shape: 10px;
+      --mdc-extended-fab-container-height: auto;
+
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      align-items: center;
+      background-color: inherit;
+      padding-block: 1rem;
+      color: inherit;
+
+      @container (min-width: 120px) {
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: start;
+        --mdc-extended-fab-label-text-size: 1rem;
+      }
+
+      transition: box-shadow 0.15s ease-in-out,
+      background-color 0.15s ease-in-out;
+
+      mat-icon {
+        transform: scale(1.5);
+        margin-inline: 0px;
+      }
+
+      &:hover,
+      &.active,
+      &:focus-visible {
+        @include mat.elevation(2);
+        background-color: var(--primary-35);
+      }
+    }
+  }
+}

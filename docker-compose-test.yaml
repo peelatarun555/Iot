@@ -1,4 +1,5 @@
 services:
+<<<<<<< HEAD
   timescaledb:
     image: timescale/timescaledb:2.11.1-pg14
     container_name: postgresql
@@ -43,3 +44,12 @@ services:
 volumes:
   timescaledb_test:
   nodejs_test:
+=======
+  web-app:
+    container_name: web-app
+    build:
+      context: ./app
+      dockerfile: docker/Dockerfile.test
+    entrypoint: [""]
+    command: npm run cypress:run:component
+>>>>>>> 2755dc0ea4cbf8d8b3390ab9cadf08248c150cc2

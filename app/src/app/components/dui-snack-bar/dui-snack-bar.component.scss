@@ -1,0 +1,11 @@
+.custom-snack-bar {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  gap: 12px;
+
+  mat-icon {
+    flex-shrink: 0;
+  }
+}

@@ -1,0 +1,15 @@
+<div class="layout-wrapper">
+    <mat-drawer-container autosize class="layout-wrapper-drawer-container">
+        <mat-drawer #drawer [mode]="drawerMode()" [opened]="true">
+            <dui-side-nav-bar></dui-side-nav-bar>
+        </mat-drawer>
+
+        <div class="app-content-wrapper">
+            <dui-header (toggleSideNavEvent)="drawer.toggle()"></dui-header>
+            <div class="app-content">
+                <router-outlet></router-outlet>
+            </div>
+            <dui-footer></dui-footer>
+        </div>
+    </mat-drawer-container>
+</div>

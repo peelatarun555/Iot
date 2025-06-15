@@ -1,0 +1,9 @@
+{
+  "baseUrl": "https://dev.data.eotlab.uni-koblenz.de/",
+  "env": {
+    "user": {
+      "email": "",
+      "password": ""
+    }
+  }
+}

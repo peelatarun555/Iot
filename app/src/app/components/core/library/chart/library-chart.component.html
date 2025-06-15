@@ -1,0 +1,52 @@
+<div class="library-chart-wrapper">
+    <div class="header">
+        <span
+            >{{ 'library.occupancyTitle' | translate }}: {{ seats()[1] }}</span
+        >
+        <div class="legend">
+            <div class="item">
+                <div
+                    class="item-bullet"
+                    [style.background-color]="getColor(SeatState.FREE)"
+                ></div>
+                <span>{{ 'library.occupancyFree' | translate }}</span>
+            </div>
+            <div class="item">
+                <div
+                    class="item-bullet"
+                    [style.background-color]="getColor(SeatState.IN_BETWEEN)"
+                ></div>
+                <span>{{ 'library.occupancyInBetween' | translate }}</span>
+            </div>
+            <div class="item">
+                <div
+                    class="item-bullet"
+                    [style.background-color]="getColor(SeatState.OCCUPIED)"
+                ></div>
+                <span>{{ 'library.occupancyOccupied' | translate }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="bar-chart">
+        <div
+            [style.flex-grow]="seats()[0]"
+            class="item-unknown"
+            [style.background-color]="getColor(SeatState.UNKNOWN)"
+        ></div>
+        <div
+            [style.flex-grow]="seats()[1]"
+            class="item-free"
+            [style.background-color]="getColor(SeatState.FREE)"
+        ></div>
+        <div
+            [style.flex-grow]="seats()[2]"
+            class="item-in-between"
+            [style.background-color]="getColor(SeatState.IN_BETWEEN)"
+        ></div>
+        <div
+            [style.flex-grow]="seats()[3]"
+            class="item-occupied"
+            [style.background-color]="getColor(SeatState.OCCUPIED)"
+        ></div>
+    </div>
+</div>

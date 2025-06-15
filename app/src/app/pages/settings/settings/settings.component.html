@@ -1,0 +1,46 @@
+<div class="settings-wrapper">
+    @if (breakpointObserverResult()?.matches) {
+        <h3 class="settings-header mat-title-large">
+            {{ 'settings' | translate }}
+        </h3>
+    }
+
+    <mat-drawer-container autosize class="settings-wrapper-drawer-container">
+        <mat-drawer #drawer [mode]="drawerMode()" [opened]="true">
+            <div class="settings-list">
+                @for (item of settingItems(); track item) {
+                    <button
+                        mat-button
+                        routerLink="{{ item.link }}"
+                        routerLinkActive="active"
+                    >
+                        <mat-icon>{{ item.icon }}</mat-icon>
+                        <span>{{ item.label | translate }}</span>
+                    </button>
+                }
+            </div>
+        </mat-drawer>
+
+        <div>
+            @if (!breakpointObserverResult()?.matches) {
+                <div class="settings-header">
+                    <button
+                        mat-mini-fab
+                        class="toggle-button"
+                        (click)="drawer.toggle()"
+                    >
+                        <mat-icon>menu</mat-icon>
+                    </button>
+
+                    <h3 class="mat-title-large">
+                        {{
+                            (activeSetting() ? activeSetting().label : '')
+                                | translate
+                        }}
+                    </h3>
+                </div>
+            }
+            <router-outlet></router-outlet>
+        </div>
+    </mat-drawer-container>
+</div>

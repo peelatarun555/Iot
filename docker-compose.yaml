@@ -1,4 +1,5 @@
 services:
+<<<<<<< HEAD
   timescaledb:
     image: timescale/timescaledb:latest-pg16
     container_name: postgresql
@@ -101,3 +102,18 @@ volumes:
 networks:
   backend:
     driver: bridge
+=======
+  web-app:
+    build:
+      context: ./app
+      args:
+        - API_URL=${API_URL}
+      dockerfile: docker/Dockerfile.dev
+    container_name: web-app
+    env_file:
+      - .env
+    ports:
+      - "${WEBAPP_PORT}:${WEBAPP_PORT}"
+    volumes:
+      - "./app/src:/app/src"
+>>>>>>> 2755dc0ea4cbf8d8b3390ab9cadf08248c150cc2

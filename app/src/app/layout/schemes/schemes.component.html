@@ -1,0 +1,25 @@
+@if (compactLayout()) {
+    <button
+        mat-icon-button
+        (click)="changeScheme()"
+        matTooltip="{{ currentScheme() | translate }}"
+    >
+        <mat-icon>{{ schemeIcon() }}</mat-icon>
+    </button>
+} @else {
+    <div class="scheme-radio-group-wrapper">
+        <mat-label id="scheme-radio-group-label">{{
+            'scheme' | translate
+        }}</mat-label>
+        <mat-radio-group
+            aria-labelledby="scheme-radio-group-label"
+            [formControl]="schemeForm"
+        >
+            @for (scheme of schemes(); track scheme) {
+                <mat-radio-button [value]="scheme">{{
+                    scheme | translate
+                }}</mat-radio-button>
+            }
+        </mat-radio-group>
+    </div>
+}

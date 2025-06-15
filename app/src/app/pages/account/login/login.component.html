@@ -1,0 +1,66 @@
+<form
+    #loginForm="ngForm"
+    (ngSubmit)="submitForm(loginForm)"
+    class="login-wrapper mat-elevation-z3"
+>
+    <img
+        alt="University Logo"
+        src="../../../../assets/img/uni-logo.svg"
+        width="150px"
+    />
+
+    <h1 class="title-text mat-headline-small">Smart Digital Campus</h1>
+
+    <!-- Error message -->
+    @if (loginInvalid()) {
+        <div class="error-wrapper" data-testid="error-message">
+            <p><b>Login failed</b></p>
+            <p class="mat-body-medium">Username or password incorrect</p>
+        </div>
+    }
+
+    <div class="form-fields">
+        <!-- Email field -->
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input
+                data-testid="username"
+                email
+                matInput
+                name="email"
+                ngModel
+                required
+                type="email"
+            />
+        </mat-form-field>
+
+        <!-- Password field -->
+        <mat-form-field>
+            <mat-label>{{ 'authentication.password' | translate }}</mat-label>
+            <input
+                data-testid="password"
+                matInput
+                name="password"
+                ngModel
+                required
+                type="password"
+            />
+        </mat-form-field>
+    </div>
+
+    <!-- Submit button -->
+    @if (isLoading) {
+        <mat-spinner [diameter]="25" [strokeWidth]="2"></mat-spinner>
+    } @else {
+        <button [disabled]="loginForm.invalid" mat-flat-button type="submit">
+            {{ 'authentication.login' | translate }}
+        </button>
+    }
+
+    <p class="mat-body-small">
+        Copyright© {{ year }}
+        <a class="link" href="https://www.uni-koblenz.de/" target="_blank"
+            >Universität Koblenz</a
+        >
+    </p>
+</form>

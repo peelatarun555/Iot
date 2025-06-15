@@ -1,0 +1,22 @@
+:root {
+  --wrapper-x: clamp(1rem, 2vw, 2rem);
+  --wrapper-y: clamp(1rem, 1.5vw, 2rem);
+}
+
+.wrapper {
+  padding-inline: var(--wrapper-x);
+}
+
+.wrapper-y {
+  padding-block: var(--wrapper-y);
+}
+
+.link {
+  color: var(--primary-40);
+}
+
+.eot-item-wrapper {
+  [mat-sort-header].cdk-program-focused .mat-sort-header-container {
+    border-bottom: 0 !important;
+  }
+}

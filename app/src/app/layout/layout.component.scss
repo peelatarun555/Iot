@@ -1,0 +1,48 @@
+.layout-wrapper {
+  height: 100%;
+  width: 100%;
+  display: block;
+
+  mat-drawer-container.layout-wrapper-drawer-container {
+    height: 100%;
+
+    > mat-drawer {
+      width: 100px;
+      max-width: 90vw;
+
+      --mat-sidenav-container-background-color: var(--primary-40);
+      --mat-sidenav-container-text-color: var(--primary-100);
+
+      &.mat-drawer-over {
+        width: min(300px, 90vw);
+      }
+
+      &.mat-drawer-side {
+        border: 0px;
+        box-shadow: var(--mat-app-elevation-shadow-level-5);
+      }
+    }
+  }
+
+  .app-content-wrapper {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+    .app-content {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      flex: 1 1 auto;
+    }
+  }
+}
+
+dui-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--mat-app-background-color);
+}

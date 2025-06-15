@@ -1,0 +1,70 @@
+.settings-wrapper {
+    block-size: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-inline: var(--wrapper-x);
+    padding-block-start: var(--wrapper-y);
+
+    &:has(.mat-drawer-over) {
+        padding: 0px;
+    }
+
+    .settings-header {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        margin-bottom: 0.25rem !important;
+    }
+
+    .toggle-button {
+        --mdc-fab-small-container-elevation-shadow: none;
+        --mdc-fab-small-container-color: transparent !important;
+        --mat-fab-small-foreground-color: var(--mat-app-text-color) !important;
+    }
+
+    .settings-wrapper-drawer-container {
+        &.mat-drawer-container {
+            --mat-sidenav-content-background-color: transparent;
+            height: 100%;
+        }
+        .mat-drawer:not(.mat-drawer-over) {
+            --mat-sidenav-container-background-color: transparent;
+        }
+        .mat-drawer.mat-drawer-over {
+            padding-inline: var(--wrapper-x);
+        }
+        > .mat-drawer-side {
+            --mat-sidenav-container-divider-color: var(--mat-divider-color);
+        }
+        > .mat-drawer {
+            padding-inline-end: var(--wrapper-x);
+            padding-block: var(--wrapper-y);
+            width: min(25%, 400px);
+            max-width: 90vw;
+
+            &.mat-drawer-over {
+                width: min(300px, 90vw);
+            }
+
+            button {
+                color: var(--mat-app-text-color) !important;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                inline-size: 100%;
+                padding-inline: 1rem;
+                &.active {
+                    color: var(--mdc-text-button-label-text-color) !important;
+                    background-color: var(--mat-option-hover-state-layer-color);
+                }
+            }
+        }
+        .mat-drawer-content {
+            padding-block: var(--wrapper-y);
+            padding-inline-start: var(--wrapper-x);
+        }
+        .mat-drawer-over ~ .mat-drawer-content {
+            padding-inline: var(--wrapper-x);
+        }
+    }
+}

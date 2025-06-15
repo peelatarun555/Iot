@@ -1,0 +1,61 @@
+@use '@angular/material' as mat;
+
+:host-context(.dark) {
+}
+
+.eot-item-wrapper {
+  @include mat.elevation(2);
+  padding: 24px 48px;
+  border-radius: 10px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  gap: 24px;
+
+  .item-header {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .item-label {
+    color: var(--neutral-variant-30);
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .add-item-button {
+    height: 30px;
+    width: 95px;
+  }
+
+  .mat-column-actions {
+    min-width: 110px;
+    gap: 6px;
+    text-align: end;
+
+    button {
+      visibility: hidden;
+    }
+  }
+
+  .item-table-wrapper {
+    align-self: stretch;
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 6px;
+  }
+
+  .mat-mdc-row:hover {
+    .mat-column-actions button {
+      visibility: visible;
+    }
+
+    .mat-mdc-cell {
+      background-color: var(--neutral-variant-60);
+    }
+  }
+}

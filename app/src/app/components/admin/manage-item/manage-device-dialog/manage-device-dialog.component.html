@@ -1,0 +1,78 @@
+<div class="dui-dialog item-management-dialog">
+    <div class="dui-dialog-title">
+        <span class="dui-dialog-title-text">
+            @if (newItem) {
+                {{ 'admin.manage.createTitle' | translate }}
+            } @else {
+                {{ 'admin.manage.updateTitle' | translate }}
+            }
+        </span>
+    </div>
+    <mat-dialog-content>
+        <form [formGroup]="formGroup" class="form-flex">
+            <mat-form-field class="form-field-full-width">
+                <mat-label>Name</mat-label>
+                <input formControlName="name" matInput />
+                @if (formGroup.get('name')?.hasError('required')) {
+                    <mat-error
+                        >{{ 'admin.manage.nameReq' | translate }}
+                    </mat-error>
+                } @else {
+                    <mat-error
+                        >{{ 'admin.manage.nameMinLength' | translate }}
+                    </mat-error>
+                }
+            </mat-form-field>
+            <dui-autocomplete
+                [loadFn]="loadDeviceTypesFn"
+                [preload]="true"
+                [restricted]="false"
+                formControlName="type"
+                label="admin.manage.deviceType"
+            ></dui-autocomplete>
+            <mat-form-field class="form-field-full-width">
+                <mat-label>{{ 'admin.manage.eui' | translate }}</mat-label>
+                <input formControlName="eui" matInput />
+            </mat-form-field>
+            <mat-form-field class="form-field-full-width">
+                <mat-label>{{ 'admin.manage.desc' | translate }}</mat-label>
+                <input formControlName="description" matInput />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option [value]="deviceStatus.development"
+                        >Development
+                    </mat-option>
+                    <mat-option [value]="deviceStatus.production"
+                        >Production
+                    </mat-option>
+                    <mat-option [value]="deviceStatus.emptyBattery"
+                        >Empty Battery
+                    </mat-option>
+                </mat-select>
+                <mat-error
+                    >{{ 'admin.manage.statusReq' | translate }}
+                </mat-error>
+            </mat-form-field>
+
+            <dui-autocomplete
+                [preload]="false"
+                [restricted]="true"
+                [searchFn]="searchPlacesFn"
+                formControlName="place"
+                label="admin.manage.place"
+            ></dui-autocomplete>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>{{ 'cancel' | translate }}</button>
+        <button (click)="submit()" mat-button>
+            @if (newItem) {
+                {{ 'create' | translate }}
+            } @else {
+                {{ 'save' | translate }}
+            }
+        </button>
+    </mat-dialog-actions>
+</div>

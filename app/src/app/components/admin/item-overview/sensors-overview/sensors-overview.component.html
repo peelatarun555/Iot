@@ -1,0 +1,225 @@
+<div class="eot-item-wrapper">
+    <div class="item-header">
+        <span class="item-label">{{ 'admin.sensors' | translate }}</span>
+        @if (isLoading()) {
+            <mat-spinner [diameter]="20">Loading</mat-spinner>
+        }
+        <button
+            (click)="openCreateDialog()"
+            [ngStyle]="{ visibility: isLoading() ? 'hidden' : '' }"
+            class="add-item-button"
+            color="primary"
+            extended
+            mat-fab
+        >
+            <mat-icon>add</mat-icon>
+            {{ 'add' | translate }}
+        </button>
+    </div>
+    <div class="item-table-wrapper">
+        <table
+            (matSortChange)="sortData($event)"
+            [dataSource]="dataSource"
+            class="mat-elevation-z0"
+            mat-table
+            matSort
+        >
+            <!-- Id Column -->
+            <ng-container matColumnDef="id">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>Id</th>
+                <td *matCellDef="let element" mat-cell>{{ element.id }}</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>
+                    <mat-form-field
+                        (click)="preventSort($event)"
+                        subscriptSizing="dynamic"
+                    >
+                        <input
+                            (input)="onInputChange(nameSearchString)"
+                            [(ngModel)]="nameSearchString"
+                            matInput
+                            placeholder="Name"
+                        />
+                        <button
+                            (click)="clearNameSearch()"
+                            [ngStyle]="{
+                                visibility:
+                                    nameSearchString === '' ? 'hidden' : '',
+                            }"
+                            color="secondary"
+                            mat-icon-button
+                            matSuffix
+                        >
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </th>
+                <td *matCellDef="let element" mat-cell>{{ element.name }}</td>
+            </ng-container>
+
+            <!-- Alias Column -->
+            <ng-container matColumnDef="alias">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>
+                    <mat-form-field
+                        (click)="preventSort($event)"
+                        subscriptSizing="dynamic"
+                    >
+                        <input
+                            (input)="onInputChange(aliasSearchString)"
+                            [(ngModel)]="aliasSearchString"
+                            matInput
+                            placeholder="Alias"
+                        />
+                        <button
+                            (click)="clearAliasSearch()"
+                            [ngStyle]="{
+                                visibility:
+                                    aliasSearchString === '' ? 'hidden' : '',
+                            }"
+                            color="secondary"
+                            mat-icon-button
+                            matSuffix
+                        >
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </th>
+                <td *matCellDef="let element" mat-cell>{{ element.alias }}</td>
+            </ng-container>
+
+            <!-- Type Column -->
+            <ng-container matColumnDef="type">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>
+                    <mat-form-field
+                        (click)="preventSort($event)"
+                        subscriptSizing="dynamic"
+                    >
+                        <input
+                            (input)="onInputChange(typeSearchString)"
+                            [(ngModel)]="typeSearchString"
+                            [placeholder]="'admin.table.sensorType' | translate"
+                            matInput
+                        />
+                        <button
+                            (click)="clearTypeSearch()"
+                            [ngStyle]="{
+                                visibility:
+                                    typeSearchString === '' ? 'hidden' : '',
+                            }"
+                            color="secondary"
+                            mat-icon-button
+                            matSuffix
+                        >
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </th>
+                <td *matCellDef="let element" mat-cell>
+                    {{ element.sensorType.name ?? element.sensorType }}
+                </td>
+            </ng-container>
+
+            <!-- Type Column -->
+            <ng-container matColumnDef="libraryId">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>
+                    <mat-form-field
+                        (click)="preventSort($event)"
+                        subscriptSizing="dynamic"
+                    >
+                        <input
+                            (input)="onInputChange(libraryIdSearchString)"
+                            [(ngModel)]="libraryIdSearchString"
+                            [placeholder]="'admin.table.libraryId' | translate"
+                            matInput
+                        />
+                        <button
+                            (click)="clearLibraryIdSearch()"
+                            [ngStyle]="{
+                                visibility:
+                                    libraryIdSearchString === ''
+                                        ? 'hidden'
+                                        : '',
+                            }"
+                            color="secondary"
+                            mat-icon-button
+                            matSuffix
+                        >
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </th>
+                <td *matCellDef="let element" mat-cell>
+                    {{ element.libraryId }}
+                </td>
+            </ng-container>
+
+            <!-- Device Column -->
+            <ng-container matColumnDef="device">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>
+                    <mat-form-field
+                        (click)="preventSort($event)"
+                        subscriptSizing="dynamic"
+                    >
+                        <input
+                            (input)="onInputChange(deviceSearchString)"
+                            [(ngModel)]="deviceSearchString"
+                            [placeholder]="'admin.table.device' | translate"
+                            matInput
+                        />
+                        <button
+                            (click)="clearDeviceSearch()"
+                            [ngStyle]="{
+                                visibility:
+                                    deviceSearchString === '' ? 'hidden' : '',
+                            }"
+                            color="secondary"
+                            mat-icon-button
+                            matSuffix
+                        >
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </th>
+                <td *matCellDef="let element" mat-cell>
+                    {{ element.device.name }}
+                </td>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+                <th *matHeaderCellDef mat-header-cell></th>
+                <td *matCellDef="let element" mat-cell>
+                    <button
+                        (click)="openSaveDialog(element)"
+                        color="secondary"
+                        mat-icon-button
+                    >
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button
+                        (click)="openRemoveDialog(element.name, element.id)"
+                        color="secondary"
+                        mat-icon-button
+                    >
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+            <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
+            <tr *matNoDataRow>
+                <td class="mat-cell" colspan="7">
+                    {{ 'admin.table.noData' | translate }}
+                </td>
+            </tr>
+        </table>
+        <mat-paginator
+            [pageSizeOptions]="[5, 10, 25, 50]"
+            showFirstLastButtons
+        ></mat-paginator>
+    </div>
+</div>

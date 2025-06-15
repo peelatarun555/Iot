@@ -1,0 +1,30 @@
+.dui-dialog {
+  max-width: 500px;
+
+  &-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    background-color: #da3744;
+
+    padding: 12px;
+    margin-bottom: 12px;
+
+    &-icon {
+      transform: scale(1);
+      color: white;
+    }
+
+    &-text {
+      color: white;
+      font-size: 18px;
+      //line-height: 30px;
+      font-weight: bolder;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 300px;
+    }
+  }
+}

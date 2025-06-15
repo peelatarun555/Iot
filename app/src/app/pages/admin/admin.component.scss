@@ -1,0 +1,13 @@
+.admin-wrapper {
+  height: 100%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.eot-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,36 @@
+<div class="main_page">
+    <mat-radio-group
+        class="myRadioGroup"
+        (change)="onTimeFrameChange($event)"
+        [(ngModel)]="selectedTimeFrame"
+    >
+        <mat-radio-button value="lastDay">Last Day</mat-radio-button>
+        <mat-radio-button value="lastWeek">Last Week</mat-radio-button>
+        <mat-radio-button value="lastYear">Last Year</mat-radio-button>
+    </mat-radio-group>
+
+    <div class="graph_container">
+        <apx-chart
+            #tempChart
+            [series]="tempChartOptions.series"
+            [chart]="tempChartOptions.chart"
+            [xaxis]="tempChartOptions.xaxis"
+            [dataLabels]="tempChartOptions.dataLabels"
+            [title]="tempChartOptions.title"
+            [stroke]="tempChartOptions.stroke"
+        >
+        </apx-chart>
+    </div>
+    <div class="graph_container">
+        <apx-chart
+            #co2Chart
+            [series]="co2ChartOptions.series"
+            [chart]="co2ChartOptions.chart"
+            [xaxis]="co2ChartOptions.xaxis"
+            [dataLabels]="co2ChartOptions.dataLabels"
+            [title]="co2ChartOptions.title"
+            [stroke]="co2ChartOptions.stroke"
+        >
+        </apx-chart>
+    </div>
+</div>
