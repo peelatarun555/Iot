@@ -1,0 +1,33 @@
+# Stage 1: Builder
+FROM alpine:3.20 AS builder
+
+# Install necessary packages
+RUN apk add --no-cache wget tar
+
+# Define versions
+ARG S5CMD_VERSION=2.2.2
+
+# Download and install s5cmd
+RUN wget --progress=dot:giga https://github.com/peak/s5cmd/releases/download/v${S5CMD_VERSION}/s5cmd_${S5CMD_VERSION}_Linux-64bit.tar.gz \
+    && tar xvzf s5cmd_${S5CMD_VERSION}_Linux-64bit.tar.gz \
+    && mv s5cmd /usr/local/bin/ \
+    && rm -rf s5cmd_${S5CMD_VERSION}_Linux-64bit.tar.gz
+
+# Stage 2: Final Image
+FROM alpine:3.20
+
+# Install bash
+RUN apk add --no-cache bash
+
+# Copy s5cmd from builder
+COPY --from=builder /usr/local/bin/s5cmd /usr/local/bin/s5cmd
+
+# Add the backup script
+COPY grafana_backup.sh /usr/local/bin/backup_and_upload.sh
+
+# Make the script executable
+RUN chmod +x /usr/local/bin/s5cmd \
+    && chmod +x /usr/local/bin/backup_and_upload.sh
+
+# Define the entrypoint
+ENTRYPOINT ["/usr/local/bin/backup_and_upload.sh"]

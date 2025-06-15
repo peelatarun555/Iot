@@ -1,0 +1,33 @@
+# Stage 1: Builder
+FROM alpine:3.20 AS builder
+
+# Install necessary packages
+RUN apk add --no-cache wget tar
+
+ARG INFLUX_CLI_VERSION=2.7.5
+ARG S5CMD_VERSION=2.2.2
+
+# Download and install InfluxDB CLI
+RUN wget --progress=dot:giga https://dl.influxdata.com/influxdb/releases/influxdb2-client-${INFLUX_CLI_VERSION}-linux-amd64.tar.gz \
+    && tar xvzf influxdb2-client-${INFLUX_CLI_VERSION}-linux-amd64.tar.gz \
+    && rm -rf influxdb2-client-${INFLUX_CLI_VERSION}-linux-amd64.tar.gz
+
+RUN wget --progress=dot:giga https://github.com/peak/s5cmd/releases/download/v${S5CMD_VERSION}/s5cmd_${S5CMD_VERSION}_Linux-64bit.tar.gz\
+    && tar xvzf s5cmd_${S5CMD_VERSION}_Linux-64bit.tar.gz \
+    && rm -rf s5cmd_${S5CMD_VERSION}_Linux-64bit.tar.gz
+
+# Stage 2: Final Image
+FROM alpine:3.20
+
+COPY --from=builder /influx /usr/local/bin/influx
+COPY --from=builder /s5cmd /usr/local/bin/s5cmd
+
+# Add the backup and upload script
+COPY influxdb_backup.sh /usr/local/bin/backup_and_upload.sh
+RUN apk add --no-cache bash \
+    && chmod +x /usr/local/bin/influx \
+    && chmod +x /usr/local/bin/s5cmd \
+    && chmod +x /usr/local/bin/backup_and_upload.sh
+
+# Define the entrypoint
+ENTRYPOINT ["/usr/local/bin/backup_and_upload.sh"]

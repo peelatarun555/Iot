@@ -1,0 +1,50 @@
+{
+  "ts-node": {
+    "files": true,
+    "require": ["tsconfig-paths/register"]
+  },
+  "compilerOptions": {
+    "noUnusedLocals": false,
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "CommonJS",
+    "rootDir": "./src",
+    "moduleResolution": "node",
+    "paths": {
+      "@utils/*": ["./src/utils/*"],
+      "@middlewares/*": ["./src/middlewares/*"],
+      "@validations/*": ["./src/validations/*"],
+      "@services/*": ["./src/services/*"],
+      "@resolvers/*": ["./src/resolvers/*"],
+      "@schemas/*": ["./src/schemas/*"],
+      "@controller/*": ["./src/controller/*"],
+      "@db/*": ["./src/db/*"],
+      "types": ["./types/express"]
+    },
+    "outDir": "./public",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "useUnknownInCatchVariables": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "skipLibCheck": true,
+    "types": ["node", "mqtt"]
+  },
+  "include": ["./src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

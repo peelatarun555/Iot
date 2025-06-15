@@ -1,0 +1,45 @@
+services:
+  timescaledb:
+    image: timescale/timescaledb:2.11.1-pg14
+    container_name: postgresql
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    volumes:
+      - timescaledb_test:/run/postgresql
+    healthcheck:
+      test: "pg_isready --username ${POSTGRES_USER} --dbname ${POSTGRES_DB}"
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  nodejs:
+    build:
+      context: ./api
+      dockerfile: docker/Dockerfile.dev
+    container_name: nodejs
+    env_file:
+      - .env
+    expose:
+      - "${PORT}"
+    ports:
+      - "${PORT}:${PORT}"
+    restart: always
+    depends_on:
+      timescaledb:
+        condition: service_healthy
+    links:
+      - timescaledb
+    command: npm run test:integration:local
+    volumes:
+      - nodejs_test:/app/logs
+      - nodejs_test:/app/testresults
+      - ./api/src/:/app/src/
+    environment:
+      - NODE_ENV=test
+
+volumes:
+  timescaledb_test:
+  nodejs_test:

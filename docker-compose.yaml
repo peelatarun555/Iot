@@ -1,0 +1,103 @@
+services:
+  timescaledb:
+    image: timescale/timescaledb:latest-pg16
+    container_name: postgresql
+    hostname: postgresql
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - timescaledb_dev:/var/lib/postgresql/data
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      timescaledb:
+        condition: service_healthy
+    ports:
+      - "8081:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@admin.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - backend
+
+  smtp:
+    image: mailhog/mailhog
+    container_name: mailhog
+    restart: always
+    ports:
+      - "8082:8025"
+    networks:
+      - backend
+
+  mqtt:
+    image: eclipse-mosquitto:2.0
+    container_name: mqtt
+    restart: always
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_config:/mosquitto/config
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "mosquitto_sub", "-h", "localhost", "-t", "$SYS/broker/uptime", "-C", "1"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  nodejs:
+    build:
+      context: ./api
+      dockerfile: docker/Dockerfile.dev
+    container_name: nodejs
+    env_file:
+      - .env
+    ports:
+      - "${PORT}:${PORT}"
+    restart: always
+    depends_on:
+      timescaledb:
+        condition: service_healthy
+      smtp:
+        condition: service_started
+      mqtt:
+        condition: service_started
+    networks:
+      - backend
+    dns: 8.8.8.8
+    volumes:
+      - nodejs_dev:/app/logs
+      - ./api/src/:/app/src/
+      - ./api/package.json:/app/package.json
+      - ./api/tsconfig.json:/app/tsconfig.json
+    command: npm run watch
+
+volumes:
+  timescaledb_dev:
+  nodejs_dev:
+  pgadmin_data:
+  mosquitto_data:
+  mosquitto_config:
+
+networks:
+  backend:
+    driver: bridge

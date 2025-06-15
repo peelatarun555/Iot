@@ -1,0 +1,20 @@
+# Use the lightweight version of Node 22
+FROM node:22-alpine
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Copy tsconfig.json and package*.json files into the working directory
+COPY tsconfig.json .
+COPY package*.json .
+
+# Copy ESLint and Prettier configuration files to the working directory
+COPY eslint.config.mjs .
+COPY .prettierrc .
+
+# Install npm packages
+RUN npm install
+EXPOSE 3000
+
+# Copy the source code into the /app/src directory in the container
+COPY ./src ./src

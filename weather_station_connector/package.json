@@ -1,0 +1,34 @@
+{
+  "name": "@eotlab/dataplatform-weather-station-connector",
+  "version": "0.1.0",
+  "description": "",
+  "license": "ISC",
+  "main": "runner.js",
+  "scripts": {
+    "build": "tsc --build tsconfig.json",
+    "lint": "npm run lint:eslint && npm run lint:format",
+    "lint:eslint": "eslint --fix ./src/**/*.ts",
+    "lint:format": "prettier --write ./src/**/*.ts",
+    "watch": "nodemon -r ./src/runner.ts --legacy-watch"
+  },
+  "dependencies": {
+    "@tightec/logger": "^1.0.2",
+    "cron": "^3.2.1",
+    "envalid": "^8.0.0",
+    "modbus-serial": "^8.0.17"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@typescript-eslint/eslint-plugin": "^8.16.0",
+    "@typescript-eslint/parser": "^8.16.0",
+    "eslint": "^9.16.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.4.1",
+    "ts-node": "^10.9.2",
+    "tsc-watch": "^6.2.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.7.2"
+  }
+}
